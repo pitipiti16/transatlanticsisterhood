@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Transatlantic Sisterhood</title>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5ede0;
+      --coral: #e07a5f;
+      --coral-light: #e8957f;
+      --dark: #3a2e28;
+      --mid: #6b5c52;
+      --header-bg: #ede0cf;
+      --footer-bg: #2e2218;
+      --parchment: #f0e6d3;
+    }
+
+    body {
+      font-family: 'Bitter', serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background-color: var(--footer-bg);
+      text-align: center;
+      padding: 20px 40px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .site-title {
+      font-family: 'Young Serif', serif;
+      color: var(--coral-light);
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      font-style: normal;
+      font-weight: 400;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .site-title:hover { color: var(--coral); }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    nav a {
+      font-family: 'Young Serif', serif;
+      font-size: 0.95rem;
+      color: var(--coral-light);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      padding-bottom: 14px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      cursor: pointer;
+      opacity: 0.75;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--coral-light);
+      border-bottom-color: var(--coral-light);
+      opacity: 1;
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: grayscale(25%) sepia(15%);
+      transform: scale(1.06);
+      transition: transform 0.7s ease;
+    }
+
+    .hero:hover img { transform: scale(1.0); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(60,40,28,0.30);
+      transition: background 0.5s ease;
+    }
+
+    .hero:hover .hero-overlay { background: rgba(40,25,15,0.78); }
+
+    .hero-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Young Serif', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-style: italic;
+      color: var(--coral-light);
+      line-height: 1.1;
+      text-align: center;
+      white-space: nowrap;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.25);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .hero:hover .hero-title {
+      opacity: 0;
+      transform: translate(-50%, -40%);
+    }
+
+    .hero-description {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      opacity: 0;
+      transition: opacity 0.5s ease 0.15s;
+      pointer-events: none;
+    }
+
+    .hero:hover .hero-description { opacity: 1; }
+
+    .hero-description p {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      font-style: italic;
+      color: var(--cream);
+      text-align: center;
+      line-height: 1.85;
+      max-width: 760px;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    }
+
+    /* ── INNER PAGE HEADER ── */
+    .page-hero {
+      background-color: var(--footer-bg);
+      padding: 52px 40px 44px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .page-hero h1 {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-style: italic;
+      color: var(--coral-light);
+    }
+
+    /* ── IMAGE CAPTION — home only ── */
+    .img-caption {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 40px;
+      background-color: var(--cream);
+      border-top: 1px solid rgba(160,120,90,0.15);
+    }
+
+    .caption-title {
+      font-family: 'Young Serif', serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+
+    .caption-divider {
+      color: var(--coral);
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    .caption-sub {
+      font-family: 'Bitter', serif;
+      font-size: 0.78rem;
+      color: var(--mid);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: var(--footer-bg);
+      color: rgba(245,237,224,0.7);
+      padding: 32px 60px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(245,237,224,0.1);
+    }
+
+    .footer-brand .footer-title {
+      font-family: 'Young Serif', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--coral-light);
+      margin-bottom: 10px;
+    }
+
+    .footer-brand .footer-authors {
+      font-size: 0.85rem;
+      color: rgba(245,237,224,0.45);
+      font-style: italic;
+    }
+
+    .footer-nav h4 {
+      font-family: 'Young Serif', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral-light);
+      margin-bottom: 16px;
+    }
+
+    .footer-nav ul { list-style: none; }
+    .footer-nav ul li { margin-bottom: 10px; }
+    .footer-nav ul li a {
+      font-size: 0.88rem;
+      color: rgba(245,237,224,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-nav ul li a:hover { color: var(--coral-light); }
+
+    .footer-team-btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 18px;
+      border: 1px solid rgba(232,149,127,0.4);
+      border-radius: 2px;
+      font-family: 'Young Serif', serif;
+      font-size: 0.82rem;
+      color: var(--coral-light);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-team-btn:hover {
+      background: rgba(232,149,127,0.1);
+      border-color: var(--coral-light);
+    }
+
+    .footer-bottom { display: none; }
+
+    /* ══════════════════════════════════
+       IMPACT PAGE
+    ══════════════════════════════════ */
+    #page-impact {
+      background-color: var(--parchment);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════════
+       IMPORTANT EVENTS PAGE — TIMELINE
+    ══════════════════════════════════ */
+    #page-events {
+      background-color: var(--parchment);
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    #page-events.active { display: flex !important; }
+
+    /* Timeline container */
+    .timeline-page {
+      padding: 40px 50px 50px;
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Canvas behind cards */
+    #tlWave {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .tl-col { position: relative; z-index: 2; }
+
+    /* Cards create their own stacking context to block canvas */
+    .tl-card { isolation: isolate; }
+
+    /* The five cards laid out in a snake */
+    .timeline-track {
+      display: flex;
+      position: relative;
+      align-items: stretch;
+      flex: 1;
+    }
+
+    /* Each column takes equal width */
+    .tl-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding: 0 8px;
+    }
+
+    /* Cards sit top or bottom depending on column */
+    .tl-col:nth-child(odd)  { justify-content: flex-start; padding-top: 20px; }
+    .tl-col:nth-child(even) { justify-content: flex-end;   padding-bottom: 20px; }
+
+    /* Cards slightly bigger */
+    .tl-col .tl-card { width: 100%; }
+
+    /* The card itself */
+    .tl-card {
+      position: relative;
+      margin: 0 4px;
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 4px 20px rgba(58,46,40,0.22);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .tl-card:hover {
+      transform: translateY(-6px) rotate(1deg);
+      box-shadow: 0 12px 36px rgba(58,46,40,0.32);
+    }
+
+    .tl-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(15%);
+      transition: filter 0.4s;
+      display: block;
+    }
+
+    .tl-card:hover img { filter: grayscale(10%) sepia(20%) brightness(1.04); }
+
+    /* Dark gradient so year text always readable */
+    .tl-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(46,34,24,0.80) 0%, rgba(46,34,24,0.1) 55%, transparent 100%);
+      transition: background 0.4s;
+    }
+
+    .tl-card:hover .tl-card-overlay {
+      background: linear-gradient(to top, rgba(46,34,24,0.88) 0%, rgba(46,34,24,0.25) 60%, transparent 100%);
+    }
+
+    .tl-card-year {
+      position: absolute;
+      bottom: 18px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: 'Young Serif', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--coral-light);
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      transition: font-size 0.3s;
+    }
+
+    .tl-card-hint {
+      position: absolute;
+      bottom: 4px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: 'Young Serif', serif;
+      font-size: 0.6rem;
+      font-style: italic;
+      color: rgba(232,149,127,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* tl-curves replaced by canvas wave */
+
+    /* ── Modal overlay ── */
+    .tl-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20,12,6,0.82);
+      backdrop-filter: blur(3px);
+      padding: 32px;
+    }
+
+    .tl-modal.open { display: flex; }
+
+    .tl-modal-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 960px;
+      width: 100%;
+      max-height: 88vh;
+      background: var(--parchment);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+      animation: modalIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .tl-modal-img {
+      position: relative;
+      overflow: hidden;
+      background: #e8ddd0;
+    }
+
+    .tl-modal-img img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: sepia(10%) contrast(1.04);
+      display: block;
+    }
+
+    .tl-modal-img.sketch-blend { background: #ede8df; }
+    .tl-modal-img.sketch-blend img { mix-blend-mode: multiply; }
+
+    .tl-modal-text {
+      padding: 52px 48px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .tl-modal-text::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        transparent, transparent 31px,
+        rgba(160,120,90,0.07) 31px, rgba(160,120,90,0.07) 32px
+      );
+      pointer-events: none;
+    }
+
+    .tl-modal-inner-text { position: relative; z-index: 1; }
+
+    .tl-modal-year {
+      font-family: 'Young Serif', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--coral);
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .tl-modal-title {
+      font-family: 'Young Serif', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .tl-modal-body {
+      font-family: 'Bitter', serif;
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .tl-modal-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-family: 'Young Serif', serif;
+      font-size: 1.2rem;
+      color: rgba(107,92,82,0.5);
+      cursor: pointer;
+      transition: color 0.2s;
+      z-index: 2;
+      line-height: 1;
+    }
+
+    .tl-modal-close:hover { color: var(--coral); }
+
+    .impact-inner {
+      position: relative;
+      z-index: 2;
+      padding: 0 120px;
+    }
+
+    /* Section roman numeral label */
+    .impact-label {
+      text-align: center;
+      padding: 60px 40px 0;
+    }
+
+    .impact-label span {
+      font-family: 'Young Serif', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--coral);
+      opacity: 0.6;
+    }
+
+    /* Two-column block */
+    .impact-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1100px;
+      margin: 36px auto 0;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+
+    .impact-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .impact-block.reverse { direction: rtl; }
+    .impact-block.reverse > * { direction: ltr; }
+
+    .impact-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .impact-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(8%) contrast(1.04);
+      transition: transform 0.7s ease;
+    }
+
+    .impact-img-wrap:hover img { transform: scale(1.04); }
+
+    .impact-img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 9px 14px;
+      background: rgba(46,34,24,0.62);
+      font-family: 'Bitter', serif;
+      font-size: 0.7rem;
+      font-style: italic;
+      color: rgba(245,237,224,0.75);
+      letter-spacing: 0.02em;
+    }
+
+    .impact-text {
+      padding: 48px 52px;
+      background: var(--parchment);
+    }
+
+    .impact-text p {
+      font-family: 'Bitter', serif;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+
+    .impact-text p:last-child { margin-bottom: 0; }
+
+    /* Ornamental divider */
+    .impact-divider {
+      max-width: 120px;
+      margin: 52px auto;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--coral), transparent);
+      opacity: 0.35;
+    }
+
+    /* Paragraph 3 — centred */
+    .impact-solo {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.85s ease 0.1s, transform 0.85s ease 0.1s;
+    }
+
+    .impact-solo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .impact-solo p {
+      font-family: 'Bitter', serif;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .impact-bottom-pad { height: 80px; }
+
+    /* ── Scrolling ship on right rail ── */
+    .ship-track {
+      position: absolute;
+      right: 14px;
+      top: 0;
+      width: 68px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .ship-track svg {
+      width: 100%;
+      height: auto;
+      opacity: 0.32;
+      filter: sepia(20%);
+    }
+
+    /* ── Side decoration rails — start below page-hero ── */
+    .impact-deco-left,
+    .impact-deco-right {
+      position: absolute;
+      top: 88px;
+      width: 110px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.22;
+    }
+
+    .impact-deco-left  { left: 0; }
+    .impact-deco-right { right: 0; }
+
+    .impact-deco-left svg,
+    .impact-deco-right svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Impact inner wrapper keeps text away from rails ── */
+    .impact-inner {
+      position: relative;
+      z-index: 2;
+      padding: 0 120px;
+    }
+
+    /* Section roman numeral label */
+    #page-figures {
+      background-color: var(--parchment);
+    }
+
+    .figures-showcase {
+      display: flex;
+      height: calc(100vh - 120px);
+      min-height: 520px;
+      overflow: hidden;
+    }
+
+    .figure-card {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      border-right: 1px solid rgba(46,34,24,0.12);
+    }
+
+    /* Hover cue — subtle warm lift so readers know it's clickable */
+    .figure-card:not(.expanded):hover img {
+      filter: grayscale(10%) sepia(25%) brightness(1.06);
+      transform: scale(1.02);
+    }
+
+    .figure-card:not(.expanded):hover .figure-name {
+      color: #fff;
+      letter-spacing: 0.08em;
+    }
+
+    .figure-card:not(.expanded):hover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(232,149,127,0.45);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .figure-card:last-child { border-right: none; }
+
+    .figure-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(30%) sepia(15%);
+      transition: filter 0.5s ease, transform 0.7s ease;
+    }
+
+    .figure-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(to top, rgba(46,34,24,0.75) 0%, transparent 100%);
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .figure-name {
+      position: absolute;
+      bottom: 22px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Young Serif', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--coral-light);
+      letter-spacing: 0.04em;
+      z-index: 2;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      padding: 0 12px;
+    }
+
+    .figure-card.expanded {
+      flex: 4;
+    }
+
+    .figure-card.expanded img {
+      filter: grayscale(40%) sepia(20%);
+      transform: scale(1.03);
+    }
+
+    .figure-card.expanded .figure-name {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .figure-card.expanded::after {
+      opacity: 0;
+    }
+
+    .figures-showcase.has-expanded .figure-card:not(.expanded) {
+      flex: 0.3;
+    }
+
+    .figures-showcase.has-expanded .figure-card:not(.expanded) .figure-name {
+      opacity: 0;
+    }
+
+    .figure-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(40,25,15,0.82);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease 0.2s;
+      z-index: 3;
+      padding: 48px 52px;
+    }
+
+    .figure-card.expanded .figure-overlay {
+      opacity: 1;
+    }
+
+    .figure-overlay-inner {
+      max-width: 560px;
+      text-align: left;
+    }
+
+    .figure-overlay-inner h2 {
+      font-family: 'Young Serif', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--coral-light);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .figure-overlay-inner p {
+      font-family: 'Bitter', serif;
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: rgba(245,237,224,0.85);
+    }
+
+    .figure-overlay::before {
+      content: '×';
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: 'Young Serif', serif;
+      font-size: 1.4rem;
+      color: rgba(232,149,127,0.6);
+      line-height: 1;
+    }
+    /* ══════════════════════════════════
+       TEAM PAGE
+    ══════════════════════════════════ */
+    #page-team {
+      background-color: var(--parchment);
+      min-height: calc(100vh - 96px);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 900px;
+      margin: 60px auto 80px;
+      padding: 0 40px;
+    }
+
+    .team-card {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .team-card.visible { opacity: 1; transform: translateY(0); }
+    .team-card:nth-child(2) { transition-delay: 0.15s; }
+    .team-card:nth-child(3) { transition-delay: 0.3s; }
+
+    .team-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 18px;
+      border: 2px solid rgba(160,120,90,0.25);
+      box-shadow: 0 4px 18px rgba(58,46,40,0.15);
+    }
+
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: sepia(8%) contrast(1.04);
+    }
+
+    .team-card h3 {
+      font-family: 'Young Serif', serif;
+      font-size: 1.15rem;
+      color: var(--dark);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .team-card .team-role {
+      font-family: 'Bitter', serif;
+      font-size: 0.82rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    /* ══════════════════════════════════
+       BIBLIOGRAPHY PAGE
+    ══════════════════════════════════ */
+    #page-bibliography {
+      background-color: var(--parchment);
+      min-height: calc(100vh - 96px);
+    }
+
+    .bib-page {
+      max-width: 820px;
+      margin: 60px auto 80px;
+      padding: 0 40px;
+    }
+
+    .bib-section {
+      border-bottom: 1px solid rgba(160,120,90,0.2);
+      margin-bottom: 0;
+    }
+
+    .bib-section:first-child {
+      border-top: 1px solid rgba(160,120,90,0.2);
+    }
+
+    .bib-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      cursor: pointer;
+      font-family: 'Young Serif', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--dark);
+      transition: color 0.2s;
+      user-select: none;
+    }
+
+    .bib-header:hover { color: var(--coral); }
+
+    .bib-arrow {
+      font-style: normal;
+      font-size: 1.3rem;
+      color: var(--coral);
+      opacity: 0.6;
+      transition: transform 0.3s ease, opacity 0.2s;
+      display: inline-block;
+    }
+
+    .bib-section.open .bib-arrow {
+      transform: rotate(90deg);
+      opacity: 1;
+    }
+
+    .bib-body {
+      display: none;
+      padding: 0 0 28px 0;
+    }
+
+    .bib-section.open .bib-body { display: block; }
+
+    .bib-category {
+      font-family: 'Young Serif', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      opacity: 0.6;
+      margin: 18px 0 12px;
+    }
+
+    .bib-entry {
+      font-family: 'Bitter', serif;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-bottom: 12px;
+      padding-left: 20px;
+      text-indent: -20px;
+    }
+
+    .bib-entry a {
+      color: var(--coral);
+      text-decoration: none;
+      word-break: break-all;
+      transition: opacity 0.2s;
+    }
+
+    .bib-entry a:hover { opacity: 0.7; text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="site-title" onclick="goHome()">London and the United States</div>
+    <nav>
+      <a onclick="showPage('events', this)">Important Events</a>
+      <a onclick="showPage('figures', this)">Key Figures</a>
+      <a onclick="showPage('impact', this)">Impact</a>
+      <a onclick="showPage('bibliography', this)">Bibliography</a>
+    </nav>
+  </header>
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="page-home">
+    <div class="hero">
+      <img src="mw84907_800x590.jpg" alt="Abolition of the Slave Trade meeting"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-title">The Transatlantic<br>Sisterhood</div>
+      <div class="hero-description">
+        <p>This website explores the role of both American and British women in their combined fight for the abolition of slavery. Enjoy reading of the figures involved, their transatlantic impact and the key events which shaped their involvement in the movement…</p>
+      </div>
+    </div>
+    <!-- Caption only on home page -->
+    <div class="img-caption">
+      <span class="caption-title">'The Abolition of the Slave Trade'</span>
+      <span class="caption-divider">—</span>
+      <span class="caption-sub">The Anti-Slavery Society Convention, 1840</span>
+    </div>
+  </div>
+
+  <!-- IMPORTANT EVENTS PAGE -->
+  <div class="page" id="page-events">
+    <div class="page-hero"><h1>A Timeline of Important Events</h1></div>
+
+    <div class="timeline-page">
+      <div class="timeline-track" id="tlTrack">
+
+        <!-- Card 1 — top left -->
+        <div class="tl-col">
+          <div class="tl-card" onclick="openEvent(0)">
+            <img src="PIC1.png" alt="1837"/>
+            <div class="tl-card-overlay"></div>
+            <div class="tl-card-year">1837</div>
+            <div class="tl-card-hint">click to explore</div>
+          </div>
+        </div>
+
+        <!-- Card 2 — bottom -->
+        <div class="tl-col">
+          <div class="tl-card" onclick="openEvent(1)">
+            <img src="PIC2.jpg" alt="1840"/>
+            <div class="tl-card-overlay"></div>
+            <div class="tl-card-year">1840</div>
+            <div class="tl-card-hint">click to explore</div>
+          </div>
+        </div>
+
+        <!-- Card 3 — top -->
+        <div class="tl-col">
+          <div class="tl-card" onclick="openEvent(2)">
+            <img src="PIC3.jpg" alt="1840"/>
+            <div class="tl-card-overlay"></div>
+            <div class="tl-card-year">1840</div>
+            <div class="tl-card-hint">click to explore</div>
+          </div>
+        </div>
+
+        <!-- Card 4 — bottom -->
+        <div class="tl-col">
+          <div class="tl-card" onclick="openEvent(3)">
+            <img src="PIC4.jpg" alt="1847"/>
+            <div class="tl-card-overlay"></div>
+            <div class="tl-card-year">1847</div>
+            <div class="tl-card-hint">click to explore</div>
+          </div>
+        </div>
+
+        <!-- Card 5 — top right -->
+        <div class="tl-col">
+          <div class="tl-card" onclick="openEvent(4)">
+            <img src="PIC5.jpg" alt="1859"/>
+            <div class="tl-card-overlay"></div>
+            <div class="tl-card-year">1859</div>
+            <div class="tl-card-hint">click to explore</div>
+          </div>
+        </div>
+
+        <!-- Animated wave canvas -->
+        <canvas id="tlWave"></canvas>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="tl-modal" id="tlModal" onclick="closeTlModal(event)">
+      <div class="tl-modal-inner">
+        <div class="tl-modal-img" id="tlModalImg">
+          <img id="tlModalImgEl" src="" alt=""/>
+        </div>
+        <div class="tl-modal-text">
+          <div class="tl-modal-close" onclick="closeTlModal()">×</div>
+          <div class="tl-modal-inner-text">
+            <div class="tl-modal-year" id="tlModalYear"></div>
+            <div class="tl-modal-title" id="tlModalTitle"></div>
+            <div class="tl-modal-body" id="tlModalBody"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KEY FIGURES PAGE -->
+  <div class="page" id="page-figures">
+    <div class="page-hero"><h1>Key Figures</h1></div>
+    <div class="figures-showcase">
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="William Lloyd Garrison.jpg" alt="William Lloyd Garrison"/>
+        <div class="figure-name">William Lloyd Garrison</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>William Lloyd Garrison</h2>
+            <p>William Lloyd Garrison was the leader of the American Anti-Slavery Society (AASS). He encouraged female leadership and appointed seven female delegates to attend the first World Anti-Slavery Convention in 1840. These delegates were known as Garrisonians. Garrison urged many women to attend the World Anti-Slavery Conference. He encouraged American women to attend the convention in London, to be inspired by British reformers such as Elizabeth Heyrick who "enkindled a blaze which unfolded new scenes of action and pointed new paths of duty."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="elizabeth heyrick.jpg" alt="Elizabeth Heyrick"/>
+        <div class="figure-name">Elizabeth Heyrick</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Elizabeth Heyrick</h2>
+            <p>Elizabeth Heyrick was a radical reformer and writer with huge influence in the British movement for abolition in the United States. She organised successful boycotts on slave-produced goods and was a leading figure in the abstention movement. Heyrick wrote pamphlets stressing the importance of granting civil liberties and rights, following emancipation. This radical ideology was shared among many female reformers attending the first World Slavery Conference. One of Heyricks most significant contributions, was her emphasis on economic strategy, describing consumption as "a social act with consequences that resonated throughout the Atlantic world". Elizabeth Heyrick recognised that what may seem like small actions made in London could have huge transatlantic repercussions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="Lucretia Mott.jpg" alt="Lucretia Mott"/>
+        <div class="figure-name">Lucretia Mott</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Lucretia Mott</h2>
+            <p>Lucretia Mott was a Quaker minister and leader of the American female delegates who came to London. Historian Kathyrn Kish Sklar argues that the diary of Lucrecia Mott is one of the best lenses by which to study the female attendance at the World Anti-Slavery Convention. Mott wrote of her frustration at having spent a month crossing the Atlantic, and years defending her rights only to be turned away – it fuelled the fire of her motivation. It was at the first World Anti-Slavery convention in London where Lucretia Mott first met Elizabeth Cady Stanton. The two became close friends and went on to organise conventions for women's rights. This displays the transatlantic sisterhood as something of personal connection in addition to ideological exchange. London and the Anti-Slavery convention proved to be a catalytic event for civil rights in America.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="Elizabeth Cady Stanton.jpg" alt="Elizabeth Cady Stanton"/>
+        <div class="figure-name">Elizabeth Cady Stanton</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Elizabeth Cady Stanton</h2>
+            <p>Elizabeth Cady Stanton was a pioneering American suffragist and abolitionist whose encounter with exclusion at the 1840 World Anti-Slavery Convention in London proved transformative. Meeting Lucretia Mott there, the two forged a lifelong friendship that would go on to shape the American women's rights movement. Their shared experience of being barred from full participation crystallised Stanton's conviction that the causes of abolition and women's emancipation were inseparable.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="Elizabeth Pease.jpg" alt="Elizabeth Pease"/>
+        <div class="figure-name">Elizabeth Pease</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Elizabeth Pease</h2>
+            <p>Elizabeth Pease was an English abolitionist who identified as a Garrisonian prior to the convention in London. After being refused entry to the World Anti-Slavery Convention, Pease attempted to organise separate female conferences for British women to meet formally with their American sisters. Unfortunately, she was obstructed by leaders of the British Foreign Anti-Slavery Society. When reflecting on this event, Pease wrote that "every obstacle was thrown in [the American delegates'] way and no public opportunity was ever afforded them for a free interchange with their English sisters". Pease maintained extensive correspondence with American Garrisonians and understood that a radical transatlantic abolitionist network was needed to achieve an end to slavery.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- IMPACT PAGE -->
+  <div class="page" id="page-impact">
+
+    <div class="page-hero"><h1>Impact</h1></div>
+
+    <!-- LEFT decorative rail: chain + vine + cameo + quill -->
+    <div class="impact-deco-left">
+      <svg viewBox="0 0 110 1400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+        <!-- Vine stem running full height -->
+        <path d="M55 0 C45 80 65 160 50 240 C35 320 65 400 50 500 C35 600 60 680 50 780 C40 880 60 960 50 1060 C40 1160 58 1260 55 1400"
+              fill="none" stroke="#3a2e28" stroke-width="1.8" opacity="0.7"/>
+        <!-- Leaf clusters -->
+        <ellipse cx="38" cy="100" rx="12" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-30 38 100)"/>
+        <ellipse cx="68" cy="180" rx="11" ry="4" fill="#3a2e28" opacity="0.5" transform="rotate(25 68 180)"/>
+        <ellipse cx="35" cy="290" rx="13" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-20 35 290)"/>
+        <ellipse cx="70" cy="370" rx="10" ry="4" fill="#3a2e28" opacity="0.45" transform="rotate(35 70 370)"/>
+        <ellipse cx="38" cy="460" rx="12" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-25 38 460)"/>
+        <ellipse cx="66" cy="560" rx="11" ry="4" fill="#3a2e28" opacity="0.45" transform="rotate(20 66 560)"/>
+        <ellipse cx="38" cy="650" rx="13" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-30 38 650)"/>
+        <ellipse cx="68" cy="750" rx="10" ry="4" fill="#3a2e28" opacity="0.4" transform="rotate(28 68 750)"/>
+        <ellipse cx="40" cy="860" rx="12" ry="5" fill="#3a2e28" opacity="0.45" transform="rotate(-22 40 860)"/>
+        <ellipse cx="65" cy="960" rx="11" ry="4" fill="#3a2e28" opacity="0.45" transform="rotate(30 65 960)"/>
+        <ellipse cx="40" cy="1060" rx="13" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-20 40 1060)"/>
+        <ellipse cx="68" cy="1160" rx="10" ry="4" fill="#3a2e28" opacity="0.4" transform="rotate(25 68 1160)"/>
+        <!-- Cameo oval at ~350 -->
+        <ellipse cx="55" cy="350" rx="28" ry="36" fill="none" stroke="#3a2e28" stroke-width="2" opacity="0.8"/>
+        <ellipse cx="55" cy="350" rx="22" ry="30" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1" opacity="0.9"/>
+        <!-- Simple profile silhouette inside cameo -->
+        <path d="M55 330 C62 330 66 336 65 344 C64 352 58 356 55 358 C52 356 46 352 45 344 C44 336 48 330 55 330 Z"
+              fill="#3a2e28" opacity="0.5"/>
+        <path d="M55 358 C50 360 47 365 47 370 L63 370 C63 365 60 360 55 358 Z"
+              fill="#3a2e28" opacity="0.4"/>
+        <!-- Small scroll at ~700 -->
+        <rect x="40" y="690" width="30" height="22" rx="3" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1.5" opacity="0.8"/>
+        <path d="M43 697 L67 697 M43 702 L67 702 M43 707 L60 707" stroke="#3a2e28" stroke-width="0.8" opacity="0.6"/>
+        <path d="M40 690 Q36 701 40 712" fill="none" stroke="#3a2e28" stroke-width="1.5" opacity="0.7"/>
+        <path d="M70 690 Q74 701 70 712" fill="none" stroke="#3a2e28" stroke-width="1.5" opacity="0.7"/>
+        <!-- Quill at ~1050 -->
+        <path d="M65 1020 C55 1035 48 1055 52 1080 C54 1090 56 1095 55 1100"
+              fill="none" stroke="#3a2e28" stroke-width="1.2" opacity="0.7"/>
+        <path d="M65 1020 C75 1025 78 1038 72 1050 C68 1058 60 1062 55 1100 C50 1062 45 1055 48 1044 C51 1033 58 1022 65 1020 Z"
+              fill="#3a2e28" opacity="0.25"/>
+        <!-- Small flowers -->
+        <circle cx="55" cy="220" r="5" fill="#e07a5f" opacity="0.4"/>
+        <circle cx="55" cy="220" r="2" fill="#3a2e28" opacity="0.5"/>
+        <circle cx="55" cy="530" r="4" fill="#e07a5f" opacity="0.35"/>
+        <circle cx="55" cy="530" r="1.5" fill="#3a2e28" opacity="0.5"/>
+        <circle cx="55" cy="830" r="5" fill="#e07a5f" opacity="0.35"/>
+        <circle cx="55" cy="830" r="2" fill="#3a2e28" opacity="0.45"/>
+        <circle cx="55" cy="1130" r="4" fill="#e07a5f" opacity="0.3"/>
+        <circle cx="55" cy="1130" r="1.5" fill="#3a2e28" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- RIGHT scrolling ship decoration (static ornamental trail) -->
+    <div class="impact-deco-right">
+      <svg viewBox="0 0 110 1400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+        <!-- Dotted wave trail running full height -->
+        <path d="M55 0 C65 80 45 160 60 240 C75 320 45 400 60 500 C75 600 50 680 60 780 C70 880 50 960 60 1060 C70 1160 52 1260 55 1400"
+              fill="none" stroke="#3a2e28" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.55"/>
+        <!-- Sparkle dots -->
+        <circle cx="72" cy="130" r="2" fill="#3a2e28" opacity="0.4"/>
+        <circle cx="40" cy="210" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="75" cy="310" r="2" fill="#3a2e28" opacity="0.4"/>
+        <circle cx="42" cy="420" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="72" cy="520" r="2" fill="#3a2e28" opacity="0.38"/>
+        <circle cx="40" cy="630" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="74" cy="730" r="2" fill="#3a2e28" opacity="0.4"/>
+        <circle cx="42" cy="840" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="72" cy="940" r="2" fill="#3a2e28" opacity="0.38"/>
+        <circle cx="40" cy="1050" r="1.5" fill="#3a2e28" opacity="0.3"/>
+        <circle cx="72" cy="1150" r="2" fill="#3a2e28" opacity="0.35"/>
+        <!-- Ship at top of trail (~180) -->
+        <g transform="translate(32, 150)" opacity="0.85">
+          <!-- Hull -->
+          <path d="M5 28 Q23 34 44 28 L40 20 L8 20 Z" fill="#3a2e28" opacity="0.6"/>
+          <rect x="11" y="8" width="1.8" height="14" fill="#3a2e28" opacity="0.7"/>
+          <rect x="22" y="4" width="1.8" height="17" fill="#3a2e28" opacity="0.7"/>
+          <rect x="33" y="8" width="1.8" height="13" fill="#3a2e28" opacity="0.65"/>
+          <!-- Sails -->
+          <path d="M12.9 8 C17 12 17 18 12.9 22 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.8"/>
+          <path d="M23.8 4 C29 9 29 16 23.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.85"/>
+          <path d="M34.8 8 C39 12 39 17 34.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.75"/>
+          <!-- Waves beneath -->
+          <path d="M2 32 Q8 29 14 32 Q20 35 26 32 Q32 29 38 32 Q44 35 50 32"
+                fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.45"/>
+          <path d="M4 36 Q10 33 16 36 Q22 39 28 36 Q34 33 40 36 Q46 39 48 36"
+                fill="none" stroke="#3a2e28" stroke-width="0.8" opacity="0.3"/>
+        </g>
+        <!-- Second smaller ship at ~650 -->
+        <g transform="translate(36, 625) scale(0.7)" opacity="0.7">
+          <path d="M5 28 Q23 34 44 28 L40 20 L8 20 Z" fill="#3a2e28" opacity="0.55"/>
+          <rect x="11" y="8" width="1.8" height="14" fill="#3a2e28" opacity="0.65"/>
+          <rect x="22" y="4" width="1.8" height="17" fill="#3a2e28" opacity="0.65"/>
+          <rect x="33" y="8" width="1.8" height="13" fill="#3a2e28" opacity="0.6"/>
+          <path d="M12.9 8 C17 12 17 18 12.9 22 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.75"/>
+          <path d="M23.8 4 C29 9 29 16 23.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.8"/>
+          <path d="M34.8 8 C39 12 39 17 34.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.7"/>
+          <path d="M2 32 Q8 29 14 32 Q20 35 26 32 Q32 29 38 32 Q44 35 50 32"
+                fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.4"/>
+        </g>
+        <!-- Third tiny ship at ~1100 -->
+        <g transform="translate(38, 1080) scale(0.55)" opacity="0.6">
+          <path d="M5 28 Q23 34 44 28 L40 20 L8 20 Z" fill="#3a2e28" opacity="0.5"/>
+          <rect x="11" y="8" width="1.8" height="14" fill="#3a2e28" opacity="0.6"/>
+          <rect x="22" y="4" width="1.8" height="17" fill="#3a2e28" opacity="0.6"/>
+          <rect x="33" y="8" width="1.8" height="13" fill="#3a2e28" opacity="0.55"/>
+          <path d="M12.9 8 C17 12 17 18 12.9 22 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.7"/>
+          <path d="M23.8 4 C29 9 29 16 23.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.75"/>
+          <path d="M34.8 8 C39 12 39 17 34.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.65"/>
+          <path d="M2 32 Q8 29 14 32 Q20 35 26 32 Q32 29 38 32 Q44 35 50 32"
+                fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.35"/>
+        </g>
+        <!-- Swirling end flourish -->
+        <path d="M55 1340 C45 1355 50 1370 55 1375 C60 1380 68 1375 65 1365 C62 1355 55 1340 55 1340 Z"
+              fill="none" stroke="#3a2e28" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Scrolling ship that follows page scroll -->
+    <div class="ship-track" id="shipTrack">
+      <svg viewBox="0 0 74 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 46 Q37 54 68 46 L62 32 L12 32 Z" fill="#3a2e28"/>
+        <rect x="17" y="10" width="2.5" height="24" fill="#3a2e28"/>
+        <rect x="34" y="4" width="2.5" height="28" fill="#3a2e28"/>
+        <rect x="51" y="10" width="2.5" height="22" fill="#3a2e28"/>
+        <path d="M19.5 10 C27 17 27 27 19.5 34 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1"/>
+        <path d="M36.5 4 C46 12 46 24 36.5 32 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1"/>
+        <path d="M53.5 10 C61 17 61 26 53.5 32 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1"/>
+        <path d="M3 52 Q12 47 21 52 Q30 57 39 52 Q48 47 57 52 Q66 57 71 52"
+              fill="none" stroke="#3a2e28" stroke-width="1.5"/>
+        <path d="M5 58 Q14 53 23 58 Q32 63 41 58 Q50 53 59 58 Q65 63 69 58"
+              fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Content wrapper (padded inward from rails) -->
+    <div class="impact-inner">
+
+      <!-- I -->
+      <div class="impact-label"><span>I</span></div>
+
+      <div class="impact-block">
+        <div class="impact-img-wrap">
+          <img src="abolition.gif" alt="Immediate, Not Gradual Abolition pamphlet"/>
+          <div class="impact-img-caption">Elizabeth Heyrick, <em>Immediate, Not Gradual Abolition</em>, republished Boston 1838</div>
+        </div>
+        <div class="impact-text">
+          <p>The transatlantic sisterhood brought British and American women together who pushed abolition in newer and more imaginative ways - many of these connections running directly through London. Elizabeth Heyrick was one of the most influential early voices within this movement, whose 1824 pamphlet 'Immediate, Not Gradual Abolition' called for the immediate end of slavery in the British West Indies and significantly shifted abolitionist thinking in Britain away from cautious gradualism.</p>
+          <p>What made Heyrick particularly significant in the bigger picture of the transatlantic sisterhood was how widely her message travelled. In 1836, her pamphlet was republished in the United States by the Philadelphia Ladies' Anti-Slavery Society, which believed that Heyrick's arguments were similarly relevant to slavery in the United States. These cases of British and American reading the same texts and sharing strategies evidences how abolitionist ideas circulated between women's networks both in Britain and the Untied States. Rather than acting separately, they were building a connected movement that approached abolition as a shared international responsibility.</p>
+          <p>Heyrick's emphasis on everyday activism, particularly through consumer boycotts became a model for many women's groups. She campaigned in Leicester to persuade grocers to stop selling slave-produced sugar and encouraged the public to pressure the slave economy through spending choices. Similar tactics to these started to be used by American free‑produce societies, showing how Heyrick's ideas spread across the Atlantic and shaped practical abolitionist work. This approach helped women gain political influence at a time when they were excluded from formal politics.</p>
+        </div>
+      </div>
+
+      <div class="impact-divider"></div>
+
+      <!-- II -->
+      <div class="impact-label"><span>II</span></div>
+
+      <div class="impact-block reverse">
+        <div class="impact-img-wrap">
+          <img src="convention.jpg" alt="The Anti-Slavery Society Convention, 1840"/>
+          <div class="impact-img-caption">The Anti-Slavery Society Convention, London, 1840</div>
+        </div>
+        <div class="impact-text">
+          <p>London served as a key meeting place for many of these transatlantic exchanges. It served as home to the Ladies' London Emancipation Society, which formed in 1863 with the primary goal of supporting the abolition of slavery in the United States. Simultaneously, American activists like Sarah Parker Remond travelled to London to speak publicly against U.S. slavery. Her lectures were widely reported in the London press which helped bring American slavery experiences directly into British public debate and strengthened support for American abolition.</p>
+          <p>Another major London‑US link came in 1840, when the first World Anti‑Slavery Convention was held in London. This event brought together delegates from across the Atlantic but also helped expose deep gender inequalities. The American women who had travelled to London were refused full participation by the British and Foreign Anti‑Slavery Society. London newspapers covered the controversy, and the incident energised women on both sides of the Atlantic to organise more independently, and these shared experiences of exclusion became a foundation for stronger cooperation rather than division.</p>
+        </div>
+      </div>
+
+      <div class="impact-divider"></div>
+
+      <!-- III -->
+      <div class="impact-label"><span>III</span></div>
+
+      <div class="impact-solo">
+        <p>The transatlantic sisterhood ultimately created a network which linked London to United States anti‑slavery activism. It achieved this by sharing texts and organisational tactics. Heyrick helped set the moral tone by insisting on immediate emancipation, while women in both London and the U.S. carried these ideas across the Atlantic, turning abolition into a coordinated international effort rooted in moral conviction and collective action.</p>
+      </div>
+
+    </div><!-- /impact-inner -->
+
+    <div class="impact-bottom-pad"></div>
+  </div>
+
+  <!-- BIBLIOGRAPHY PAGE -->
+  <div class="page" id="page-bibliography">
+    <div class="page-hero"><h1>Bibliography</h1></div>
+
+    <div class="bib-page">
+
+      <!-- Important Events -->
+      <div class="bib-section">
+        <div class="bib-header" onclick="toggleBib(this)">
+          <span>Important Events</span>
+          <span class="bib-arrow">›</span>
+        </div>
+        <div class="bib-body">
+          <p class="bib-entry">Mason, Matthew. "Keeping up Appearances: The International Politics of Slave Trade Abolition in the Nineteenth-Century Atlantic World." <em>The William and Mary Quarterly</em> 66, no. 4 (2009): 809–32. <a href="https://doi.org/10.2307/40467542" target="_blank">https://doi.org/10.2307/40467542</a></p>
+          <p class="bib-entry">Midgley, Clare. <em>Women against Slavery.</em> Routledge EBooks. Routledge, 2004. <a href="https://doi.org/10.4324/9780203645314" target="_blank">https://doi.org/10.4324/9780203645314</a></p>
+          <p class="bib-entry">Pascale, Dewey S. "Aspects of Sisterhood and Slavery: Transatlantic Antislavery Activism and Women's Rights." <em>Counterpoints</em> 406 (2012): 130–50. <a href="http://www.jstor.org/stable/42981625" target="_blank">http://www.jstor.org/stable/42981625</a></p>
+          <p class="bib-entry">Salenius, Sirpa. <em>Sarah Parker Remond in Cosmopolitan Europe.</em> University of Massachusetts Press, 2016. <a href="https://doi.org/10.2307/j.ctv35q8t1" target="_blank">https://doi.org/10.2307/j.ctv35q8t1</a></p>
+          <p class="bib-entry">Sklar, Kathryn Kish. "'Women Who Speak for an Entire Nation': American and British Women Compared at the World Anti-Slavery Convention, London, 1840." <em>Pacific Historical Review</em> 59, no. 4 (November 1, 1990): 453–99. <a href="https://doi.org/10.2307/3640236" target="_blank">https://doi.org/10.2307/3640236</a></p>
+          <p class="bib-entry">Walker, Marilyn. "Gendering Transatlantic AntiSlavery History." <em>The Eighteenth Century</em> 57, no. 3 (2016): 401–7. <a href="https://doi.org/10.2307/eighcent.57.3.401" target="_blank">https://doi.org/10.2307/eighcent.57.3.401</a></p>
+        </div>
+      </div>
+
+      <!-- Key Figures -->
+      <div class="bib-section">
+        <div class="bib-header" onclick="toggleBib(this)">
+          <span>Key Figures</span>
+          <span class="bib-arrow">›</span>
+        </div>
+        <div class="bib-body">
+          <p class="bib-entry">Brown, David. "William Lloyd Garrison, Transatlantic Abolitionism and Colonisation in the Mid Nineteenth Century: The Revival of the Peculiar Solution." (online), ahead of print, 2012. <a href="https://doi.org/10.1080/0144039X.2012.669901" target="_blank">https://doi.org/10.1080/0144039X.2012.669901</a></p>
+          <p class="bib-entry">Heyrick, Elizabeth, and Thomas Clarkson. <em>Immediate, Not Gradual Abolition: Or, An Inquiry into the Shortest, Safest, and Most Effectual Means of Getting Rid of West Indian Slavery — 3d Ed., with an Appendix, Containing Clarkson's Comparison between the State of the British Peasantry and That of the Slaves in the Colonies, Etc.</em> 1824.</p>
+          <p class="bib-entry">Holcomb, Julie. 'I Am a Man, Your Brother: Elizabeth Heyrick, Abstention, and Immediatism'. In <em>Moral Commerce.</em> Cornell University Press, n.d.</p>
+          <p class="bib-entry">Kish Sklar, Kathryn. '"Women Who Speak for an Entire Nation": American and British Women Compared at the World Anti-Slavery Convention, London, 1840'. <em>Pacific Historical Review</em> 59, no. 4 (1990).</p>
+          <p class="bib-entry">Midgley, Clare. <em>Women Against Slavery, the British Campaigns, 1780–1870.</em> Routledge, 1995.</p>
+          <p class="bib-entry">Taylor, Clare. 'British and American Abolitionists: An Episode in Transatlantic Understanding'. <em>Journal of American History</em> 63, no. 1 (1976): 132–33.</p>
+        </div>
+      </div>
+
+      <!-- Impact -->
+      <div class="bib-section">
+        <div class="bib-header" onclick="toggleBib(this)">
+          <span>Impact</span>
+          <span class="bib-arrow">›</span>
+        </div>
+        <div class="bib-body">
+          <p class="bib-category">Primary Sources</p>
+          <p class="bib-entry">Elizabeth Heyrick, <em>Immediate, Not Gradual Abolition; or, An Inquiry into the Shortest, Safest, and Most Effectual Means of Getting Rid of West Indian Slavery</em> (Philadelphia: Philadelphia Ladies' Anti-Slavery Society, 1836).</p>
+          <p class="bib-entry">British and Foreign Anti-Slavery Society. <em>Proceedings of the General Anti-Slavery Convention, Held in London, 1840.</em> London: British and Foreign Anti-Slavery Society, 1841.</p>
+          <p class="bib-entry">Ladies' Society to Aid Fugitives from Slavery. <em>Founding Documents and Reports.</em> London, 1853.</p>
+          <p class="bib-entry">Remond, Sarah Parker. "Lectures Delivered in London on American Slavery." (Contemporary newspaper reports, 1859–1860).</p>
+          <p class="bib-category">Secondary Sources</p>
+          <p class="bib-entry">Bacon, Margaret Hope. <em>Mothers of Feminism: The Story of Quaker Women in America.</em> San Francisco: Harper &amp; Row, 1986.</p>
+          <p class="bib-entry">Midgley, Clare. <em>Women Against Slavery: The British Campaigns, 1780–1870.</em> London: Routledge, 1992.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TEAM PAGE -->
+  <div class="page" id="page-team">
+    <div class="page-hero"><h1>The Team</h1></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="Fran.jpg" alt="Fran"/>
+        </div>
+        <h3>Fran</h3>
+        <div class="team-role">Author, Editor of "Key Figures" section</div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="Piti.jpg" alt="Piti" style="object-position: center 20%; transform: scale(1.6); transform-origin: center 30%;"/>
+        </div>
+        <h3>Piti</h3>
+        <div class="team-role">Author, Editor of "Important Events" section. Web Designer</div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="callum.jpg" alt="Callum"/>
+        </div>
+        <h3>Callum</h3>
+        <div class="team-role">Author, Editor of "Impact" section</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-title">The Transatlantic Sisterhood</div>
+        <div class="footer-authors">By Fran, Piti and Callum</div>
+      </div>
+      <div class="footer-nav">
+        <h4>Pages</h4>
+        <ul>
+          <li><a onclick="showPage('events', document.querySelectorAll('nav a')[0])">Important Events</a></li>
+          <li><a onclick="showPage('figures', document.querySelectorAll('nav a')[1])">Key Figures</a></li>
+          <li><a onclick="showPage('impact', document.querySelectorAll('nav a')[2])">Impact</a></li>
+          <li><a onclick="showPage('bibliography', document.querySelectorAll('nav a')[3])">Bibliography</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h4>About</h4>
+        <ul>
+          <li><a>London and the United States</a></li>
+        </ul>
+        <div class="footer-team-btn" onclick="showPage('team', null)">The Team</div>
+      </div>
+    </div>
+    <div class="footer-bottom"></div>
+  </footer>
+
+  <script>
+    const pageMap = {
+      'events':       'page-events',
+      'figures':      'page-figures',
+      'impact':       'page-impact',
+      'bibliography': 'page-bibliography',
+      'team':         'page-team'
+    };
+
+    function showPage(pageKey, linkEl) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageMap[pageKey]).classList.add('active');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      if (linkEl) linkEl.classList.add('active');
+      window.scrollTo(0, 0);
+      if (pageKey === 'impact' || pageKey === 'team') setTimeout(observeAnimated, 100);
+      if (pageKey === 'impact') setupShip();
+      if (pageKey === 'events') initTimeline();
+    }
+
+    function goHome() {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-home').classList.add('active');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      window.scrollTo(0, 0);
+      window.removeEventListener('scroll', shipScroll);
+    }
+
+    function observeAnimated() {
+      const targets = document.querySelectorAll('.impact-block, .impact-solo, .team-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      targets.forEach(t => observer.observe(t));
+    }
+
+    // ── TIMELINE ──
+    const tlEvents = [
+      {
+        img: 'PIC1.png', sketch: false,
+        year: '1837',
+        title: 'Anti-Slavery Convention of American Women',
+        body: 'Prior to becoming an international network, the first formal convention for women who supported the anti-slavery movement was convened in New York. Here, we would see the foundations of a "transatlantic sisterhood" being built as figures such as Lucretia Mott would begin to construct a network of women\'s anti-slavery organisations through such meetings. Moreover, this event would prove to be a starting point for the incorporation of British women, as well as London\'s political power, into the anti-slavery movement as a committee formed by delegates of the convention was tasked with strengthening the "sympathy of the women of Great Britain."'
+      },
+      {
+        img: 'PIC2.jpg', sketch: false,
+        year: '1840',
+        title: '1840 World Anti-Slavery Convention, London',
+        body: 'Arguably one of the most important events in the global effort against slavery, the 1840 convention was the first event of its kind, being the inaugural "world" congregation of anti-slavery organisations. The 1840 convention acted as a beacon for not only US-UK organisations to show solidarity, but also for domestic organisations to congregate for the first time, connecting large women\'s anti-slavery organisations from places like Chelmsford to those in Edinburgh and other cities through London. The fact that such an event, which was largely successful in pushing forward a broad intersection of issues, was held in London highlights the city\'s status and political capital in the 19th century, acting as a sort of gateway to the international stage for domestic organisations.'
+      },
+      {
+        img: 'PIC3.jpg', sketch: false,
+        year: '1840 (Continued)',
+        title: '1840 World Anti-Slavery Convention — Attendees',
+        body: 'By examining the list of attendees at the convention, it becomes possible to pin this event as the point of formation for the concept of a "transatlantic sisterhood". The inclusion of names such as "Lucretia Mott", "Elizabeth Cady Stanton", "Anne Knight", and "Elizabeth Pease", despite the segregation of women from the male delegates during the convention, shows how central London was in enabling key figures in both countries to make first contact and create an impromptu "transatlantic sisterhood". Notably, historian Kathryn Kish Sklar claims this convention "marks the beginning of the modern women\'s rights movement in the United States and the end of the antislavery movement\'s hegemony within U.S. radical reform," highlighting how the transatlantic sisterhood was important not only to abolitionism but also to feminism, a reflection of its intersectional nature.'
+      },
+      {
+        img: 'PIC4.jpg', sketch: false,
+        year: '1847',
+        title: 'Scottish Women\'s Addresses to Free American Women',
+        body: 'By the late 1840s, the sisterhood had moved beyond sympathy into organised mass activism. For example, in 1847, Scottish women\'s anti-slavery societies collected signatures for addresses urging free American women to oppose slavery, garnering 45,000 in Glasgow and 10,337 in Edinburgh, with these later being displayed in Boston. This shows not only a tangible act of defiance brought on by the transatlantic sisterhood, further cementing the existence of the concept, but also the importance of London in linking isolated British women\'s organisations to American women\'s organisations through events such as the 1840 convention.'
+      },
+      {
+        img: 'PIC5.jpg', sketch: true,
+        year: '1859',
+        title: 'Sarah Parker Remond\'s Tours',
+        body: 'Remond\'s tours were in some ways an embodiment of the transatlantic sisterhood, as she was a black American woman who gave lectures to thousands of people across the UK, but mainly in London, where her largest audiences existed. She would then settle in London, even becoming a British citizen in 1865, and continue working on abolitionist causes, enrolling in Bedford Ladies\' College to further spread her cause. Overall, Remond\'s reception in London shows the receptivity of Londoners to the abolitionist cause, but more importantly, it helps to further explain the transatlantic sisterhood\'s status as being a product of London to some extent.'
+      }
+    ];
+
+    function openEvent(idx) {
+      const ev = tlEvents[idx];
+      document.getElementById('tlModalImgEl').src = ev.img;
+      document.getElementById('tlModalImg').className = 'tl-modal-img' + (ev.sketch ? ' sketch-blend' : '');
+      document.getElementById('tlModalYear').textContent  = ev.year;
+      document.getElementById('tlModalTitle').textContent = ev.title;
+      document.getElementById('tlModalBody').textContent  = ev.body;
+      document.getElementById('tlModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTlModal(e) {
+      if (e && e.target !== document.getElementById('tlModal') && !e.target.classList.contains('tl-modal-close')) return;
+      document.getElementById('tlModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── TIMELINE: static treasure-map dotted path ──
+    function initTimeline() {
+      setTimeout(drawTlPath, 80);
+    }
+
+    function drawTlPath() {
+      const track  = document.getElementById('tlTrack');
+      const canvas = document.getElementById('tlWave');
+      if (!track || !canvas) return;
+
+      canvas.width  = track.offsetWidth;
+      canvas.height = track.offsetHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Get anchor point — stop at card EDGE, not centre
+      const cols   = track.querySelectorAll('.tl-col');
+      const trackR = track.getBoundingClientRect();
+      const anchors = Array.from(cols).map((col, i) => {
+        const card = col.querySelector('.tl-card');
+        const cr   = card.getBoundingClientRect();
+        const isTop = i % 2 === 0;
+        return {
+          cx: cr.left - trackR.left + cr.width / 2,
+          cy: isTop
+            ? cr.top - trackR.top + cr.height + 2   // just below bottom edge
+            : cr.top - trackR.top - 2                // just above top edge
+        };
+      });
+
+      // Draw bezier snake as dotted treasure-map line
+      ctx.setLineDash([5, 8]);
+      ctx.lineWidth   = 2;
+      ctx.strokeStyle = 'rgba(107,82,55,0.42)';
+      ctx.lineCap     = 'round';
+      ctx.lineJoin    = 'round';
+
+      ctx.beginPath();
+      ctx.moveTo(anchors[0].cx, anchors[0].cy);
+      for (let i = 0; i < anchors.length - 1; i++) {
+        const a  = anchors[i];
+        const b  = anchors[i + 1];
+        const mx = (a.cx + b.cx) / 2;
+        ctx.bezierCurveTo(mx, a.cy, mx, b.cy, b.cx, b.cy);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Small X marks at each anchor
+      anchors.forEach(pt => {
+        ctx.save();
+        ctx.translate(pt.cx, pt.cy);
+        ctx.strokeStyle = 'rgba(160,100,55,0.4)';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(-4, -4); ctx.lineTo(4, 4);
+        ctx.moveTo(4, -4);  ctx.lineTo(-4, 4);
+        ctx.stroke();
+        ctx.restore();
+      });
+    }
+
+    function toggleBib(header) {
+      const section = header.closest('.bib-section');
+      section.classList.toggle('open');
+    }
+
+    function expandFigure(card) {
+      const showcase = card.closest('.figures-showcase');
+      const isExpanded = card.classList.contains('expanded');
+      showcase.querySelectorAll('.figure-card').forEach(c => c.classList.remove('expanded'));
+      showcase.classList.remove('has-expanded');
+      if (!isExpanded) {
+        card.classList.add('expanded');
+        showcase.classList.add('has-expanded');
+      }
+    }
+
+    // Ship follows scroll on impact page
+    function setupShip() {
+      window.removeEventListener('scroll', shipScroll);
+      window.addEventListener('scroll', shipScroll);
+      shipScroll();
+    }
+
+    function shipScroll() {
+      const page = document.getElementById('page-impact');
+      if (!page || !page.classList.contains('active')) return;
+      const ship = document.getElementById('shipTrack');
+      if (!ship) return;
+      const pageTop = page.getBoundingClientRect().top + window.scrollY;
+      const pageH   = page.offsetHeight;
+      const headerH = 88;
+      const shipH   = ship.offsetHeight || 60;
+      const maxTop  = pageH - shipH - 20;
+      const scrolled = window.scrollY - pageTop;
+      const progress = Math.max(0, Math.min(1, scrolled / Math.max(pageH - window.innerHeight, 1)));
+      const minTop  = headerH + 10;
+      ship.style.top = Math.min(minTop + progress * (maxTop - minTop), maxTop) + 'px';
+    }
+  </script>
+</body>
+</html>
